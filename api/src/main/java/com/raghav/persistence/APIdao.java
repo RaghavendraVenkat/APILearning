@@ -1,4 +1,4 @@
-package com.raghav.APIDAO;
+package com.raghav.persistence;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.raghav.Model.Employee;
+import com.raghav.model.Employee;
 import com.raghav.repository.APIRepository;
 
 @Service

@@ -1,4 +1,4 @@
-package com.raghav.Model;
+package com.raghav.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

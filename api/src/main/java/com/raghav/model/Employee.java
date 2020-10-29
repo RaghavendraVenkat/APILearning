@@ -9,15 +9,15 @@ import javax.persistence.Table;
 public class Employee {
 
 	@Id
-	private int empID;
+	private long empID;
 	
 	private String ename;
 	private String specialization;
 	
-	public int getEmpID() {
+	public long getEmpID() {
 		return empID;
 	}
-	public void setEmpID(int empID) {
+	public void setEmpID(long empID) {
 		this.empID = empID;
 	}
 	

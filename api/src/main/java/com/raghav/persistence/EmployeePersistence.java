@@ -1,7 +1,6 @@
 package com.raghav.persistence;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,7 @@ import com.raghav.model.Employee;
 import com.raghav.repository.APIRepository;
 
 @Service
-public class APIdao {
+public class EmployeePersistence {
 
 	@Autowired
 	APIRepository repo;
@@ -23,8 +22,8 @@ public class APIdao {
 		return repo.findAll();
 	}
 	
-	public Optional<Employee> getEmployee(int empID) {
-		return repo.findById(empID);
+	public Employee getEmployee(long empID) {
+		return repo.findById(empID).get();
 	}
 	
 	public void deleteEmployee(Employee emp) {

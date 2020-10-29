@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.raghav.model.Employee;
 
-public interface APIRepository extends JpaRepository<Employee, Integer>{
+public interface APIRepository extends JpaRepository<Employee, Long>{
 
 }

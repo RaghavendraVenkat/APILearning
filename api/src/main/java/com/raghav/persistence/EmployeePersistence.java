@@ -1,6 +1,7 @@
 package com.raghav.persistence;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class EmployeePersistence {
 		return repo.findAll();
 	}
 	
-	public Employee getEmployee(long empID) {
-		return repo.findById(empID).get();
+	public Optional<Employee> getEmployee(long empID) {
+		return repo.findById(empID);
 	}
 	
 	public void deleteEmployee(Employee emp) {

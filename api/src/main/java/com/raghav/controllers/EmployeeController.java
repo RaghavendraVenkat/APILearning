@@ -1,7 +1,10 @@
 package com.raghav.controllers;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +32,8 @@ public class EmployeeController {
 	}
 
 	@GetMapping(path = "/employee/{id}",produces = {"application/xml","application/json"})
-	public Employee getEmployee(@PathVariable(value = "id") long empID) {
-		Employee emp = dao.getEmployee(empID);
+	public Optional<Employee> getEmployee(@PathVariable(value = "id") long empID) {
+		Optional<Employee> emp = dao.getEmployee(empID);
 		return emp;
 
 	}
@@ -41,16 +44,16 @@ public class EmployeeController {
 	}
 	
 	@PutMapping(path = "/employee/{id}",produces = {"application/xml","application/json"},consumes = {"application/xml","application/json"})
-	public Employee updateEmployee(@PathVariable(value = "id") long empID, @RequestBody Employee emp) {
+	public Optional<Employee> updateEmployee(@PathVariable(value = "id") long empID, @RequestBody Employee emp) {
 		
-		Employee updateEmployee = dao.getEmployee(empID);
+		Optional<Employee> updateEmployee = dao.getEmployee(empID);
 		
-		if(updateEmployee!=null) {
-			updateEmployee.setEmpID(emp.getEmpID());
-			updateEmployee.setEname(emp.getEname());
-			updateEmployee.setSpecialization(emp.getSpecialization());
+		if(updateEmployee.isPresent()) {
+			updateEmployee.get().setEmpID(emp.getEmpID());
+			updateEmployee.get().setEname(emp.getEname());
+			updateEmployee.get().setSpecialization(emp.getSpecialization());
 			
-			dao.saveEmployee(updateEmployee);
+			dao.saveEmployee(updateEmployee.get());
 		}
 		
 		return updateEmployee;		
@@ -58,13 +61,15 @@ public class EmployeeController {
 	}
 	
 	@DeleteMapping(path = "/employee/{id}")
-	public void deleteEmployee(@PathVariable(value = "id") long empID) {
+	public Optional<Employee> deleteEmployee(@PathVariable(value = "id") long empID) {
 			
-		Employee delEmp = dao.getEmployee(empID);
+		Optional<Employee> delEmp = dao.getEmployee(empID);
 		
-		if(delEmp!=null) {
-			dao.deleteEmployee(delEmp);
+		if(delEmp.isPresent()) {
+			dao.deleteEmployee(delEmp.get());
 		}
+		
+		return delEmp;
 	}
 	
 
